@@ -30,10 +30,15 @@ module.exports = {
     {
       resolve: `gatsby-source-wordpress`,
       options: {
-        baseUrl: `blumgarden.ru`,
-        protocol: `https`,
+        baseUrl: `gatsby.local`,
+        protocol: `http`,
         hostingWPCOM: false,
-        useACF: true,
+        useACF: false,
+        auth: {
+          jwt_user: process.env.JWT_USER,
+          jwt_pass: process.env.JWT_PASSWORD,
+          jwt_base_path: "/jwt-auth/v1/token",
+        },
         includedRoutes: [
           "**/categories",
           "**/posts",

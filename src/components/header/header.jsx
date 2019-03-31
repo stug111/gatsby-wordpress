@@ -3,6 +3,14 @@ import { Link, StaticQuery, graphql } from "gatsby"
 
 import style from "./header.module.css"
 
+const getUrl = url => {
+  const parts = url.split("/")
+
+  parts.splice(0, 3)
+
+  return parts.join("/")
+}
+
 class HeaderTemplate extends Component {
   render() {
     const ListLink = props => (
@@ -33,7 +41,30 @@ class HeaderTemplate extends Component {
         `}
         render={data => {
           const menu = data.allWordpressWpApiMenusMenusItems.edges[0].node.items
-          console.log(menu)
+
+          const menuItem = menu.map((item, index) => {
+            if (item.object === "custom") {
+              return (
+                <ListLink
+                  key={index}
+                  to={item.object_slug}
+                  title={item.title}
+                  className={style.menuItemLink}
+                />
+              )
+            }
+
+            const actualUrl = getUrl(item.url)
+            return (
+              <ListLink
+                key={index}
+                to={actualUrl}
+                title={item.title}
+                className={style.menuItemLink}
+              />
+            )
+          })
+
           return (
             <header className={style.header}>
               <div className={style.container}>
@@ -41,15 +72,7 @@ class HeaderTemplate extends Component {
                   Gatsby
                 </Link>
                 <nav>
-                  <ul className={style.menu}>
-                    {menu.map((item, index) => (
-                      <ListLink
-                        to={item.object_slug}
-                        title={item.title}
-                        key={index}
-                      />
-                    ))}
-                  </ul>
+                  <ul className={style.menu}>{menuItem}</ul>
                 </nav>
               </div>
             </header>

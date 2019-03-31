@@ -1,5 +1,4 @@
 import React from "react"
-import { graphql } from "gatsby"
 
 import style from "./index.module.css"
 import "./index.css"

@@ -45,6 +45,7 @@ module.exports = {
           "**/pages",
           "**/media",
           "**/tags",
+          "**/menus",
           "**/taxonomies",
         ],
       },

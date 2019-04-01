@@ -15,7 +15,11 @@ class HeaderTemplate extends Component {
   render() {
     const ListLink = props => (
       <li className={style.menuItem}>
-        <Link to={`/${props.to}`} className={style.menuItemLink}>
+        <Link
+          to={`/${props.to}`}
+          className={style.menuItemLink}
+          activeClassName={style.currentItem}
+        >
           {props.title}
         </Link>
       </li>
@@ -45,12 +49,11 @@ class HeaderTemplate extends Component {
           const menuItem = menu.map((item, index) => {
             if (item.object === "custom") {
               return (
-                <ListLink
-                  key={index}
-                  to={item.object_slug}
-                  title={item.title}
-                  className={style.menuItemLink}
-                />
+                <li className={style.menuItem} key={index}>
+                  <a href={item.url} className={style.menuItemLink}>
+                    {item.title}
+                  </a>
+                </li>
               )
             }
 

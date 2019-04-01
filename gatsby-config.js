@@ -50,6 +50,15 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: `@wapps/gatsby-plugin-fonts`,
+      options: {
+        googleFonts: {
+          families: ["Roboto"],
+          subsets: ["greek"],
+        },
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // 'gatsby-plugin-offline',

@@ -54,6 +54,6 @@
 }
 .menu-item-link:hover,
 .menu-item-link:focus,
-.menu-item-link[aria-current="page"] {
+.current-item {
   opacity: 0.75;
 }

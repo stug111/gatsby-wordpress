@@ -15,6 +15,22 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      allWordpressCategory {
+        edges {
+          node {
+            id
+            path
+          }
+        }
+      }
+      allWordpressPost {
+        edges {
+          node {
+            id
+            path
+          }
+        }
+      }
     }
   `)
 
@@ -22,14 +38,40 @@ exports.createPages = async ({ graphql, actions }) => {
     throw new Error(result.errors)
   }
 
-  const { allWordpressPage } = result.data
+  const {
+    allWordpressPage,
+    allWordpressCategory,
+    allWordpressPost,
+  } = result.data
 
   const pageTemplate = path.resolve(`./src/templates/page.jsx`)
+  const archiveTemplate = path.resolve(`./src/templates/archive.jsx`)
+  const postTemplate = path.resolve(`./src/templates/post.jsx`)
 
   allWordpressPage.edges.forEach(edge =>
     createPage({
       path: edge.node.path,
       component: slash(pageTemplate),
+      context: {
+        id: edge.node.id,
+      },
+    })
+  )
+
+  allWordpressCategory.edges.forEach(edge =>
+    createPage({
+      path: edge.node.path,
+      component: slash(archiveTemplate),
+      context: {
+        id: edge.node.id,
+      },
+    })
+  )
+
+  allWordpressPost.edges.forEach(edge =>
+    createPage({
+      path: edge.node.path,
+      component: slash(postTemplate),
       context: {
         id: edge.node.id,
       },

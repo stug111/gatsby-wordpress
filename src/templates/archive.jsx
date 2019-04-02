@@ -46,7 +46,7 @@ export const archiveAuery = graphql`
           featured_media {
             localFile {
               childImageSharp {
-                fluid {
+                fluid(maxWidth: 400) {
                   ...GatsbyImageSharpFluid_withWebp
                 }
               }

@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import Img from "gatsby-image"
+import style from "./post.module.css"
 
 class PostArchive extends Component {
   render() {
@@ -7,12 +8,16 @@ class PostArchive extends Component {
     const image = data.featured_media
 
     return (
-      <div>
-        {image && <Img fluid={image.localFile.childImageSharp.fluid} />}
-        <h2>
-          <a href={data.path}>{data.title}</a>
-        </h2>
-        <div dangerouslySetInnerHTML={{ __html: data.excerpt }} />
+      <div className={style.post}>
+        <div>
+          {image && <Img fluid={image.localFile.childImageSharp.fluid} />}
+        </div>
+        <div>
+          <h2>
+            <a href={data.path}>{data.title}</a>
+          </h2>
+          <div dangerouslySetInnerHTML={{ __html: data.excerpt }} />
+        </div>
       </div>
     )
   }

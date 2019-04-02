@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import Img from "gatsby-image"
+import { Link } from "gatsby"
 import style from "./post.module.css"
 
 class PostArchive extends Component {
@@ -14,7 +15,7 @@ class PostArchive extends Component {
         </div>
         <div>
           <h2>
-            <a href={data.path}>{data.title}</a>
+            <Link to={data.path}>{data.title}</Link>
           </h2>
           <div dangerouslySetInnerHTML={{ __html: data.excerpt }} />
         </div>

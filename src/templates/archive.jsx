@@ -43,6 +43,15 @@ export const archiveAuery = graphql`
           title
           path
           excerpt
+          featured_media {
+            localFile {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
+          }
         }
       }
     }
